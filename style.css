@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: auto;
+    /* background: radial-gradient(circle at top left,
+                    rgba(99, 102, 241, 0.15),
+                    transparent 40%); */
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sometalkingContainer>* {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.sometalkingContainer>*:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.sometalkingContainer>*:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.sometalkingContainer>*:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.sometalkingContainer>*:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+h1,
+h3 {
+    letter-spacing: -0.5px;
+}
+
+:root {
+    --bg: #0f172a;
+    --surface: #111827;
+    --surface-light: #1f2937;
+    --primary: #6366f1;
+    --accent: #22c55e;
+
+    --text-main: #f9fafb;
+    --text-sub: #9ca3af;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-main);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portfolio {
+    font-variant-caps: all-petite-caps;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+.yourName {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.profilePicture {
+    width: 44px;
+    height: 44px;
+    background-color: rgb(0, 72, 255);
+    border-radius: 18px;
+}
+
+.naming {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.par {
+    color: var(--text-sub);
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.navLinks li {
+    list-style: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.navLinks li a {
+    text-decoration: none;
+    color: var(--text-sub);
+    font-family: sans-serif;
+}
+
+.navLinks li:hover {
+    scale: 110%;
+}
+
+.navLinks li a:hover {
+    color: var(--text-main);
+}
+
+.navLinks li a.active {
+    color: var(--primary);
+}
+
+.navLinks li:active {
+    scale: 95%;
+}
+
+.mainEvent {
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+}
+
+.subMainEvent {
+    display: flex;
+    gap: 3rem;
+}
+
+.big-one {
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    background: linear-gradient(to right, #fff, #9ca3af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+.box,
+.boxes_again_inside_boxes,
+.boxes-child-in-experience {
+    background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.25),
+            0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.box {
+    width: 40%;
+    display: flex;
+    padding: 3rem;
+    border-radius: 0.8rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(20px);
+}
+
+.box-starting-point {
+    letter-spacing: 0.2rem;
+    font-variant-caps: all-petite-caps;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.sometalkingContainer {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sometalkingContainer p {
+    color: var(--text-sub);
+}
+
+.sometalkingContainer button,
+.emailMeBtn {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.8rem;
+    padding-top: 0.8rem;
+    border-radius: 0.8rem;
+    border: none;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+/* TODO: I forgot the syntax */
+/* .sometalkingContainer button::before {
+    top: 0;
+    left: 0;
+    content: "";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    background-color: aliceblue;
+} */
+
+.sometalkingContainer button:hover,
+.emailMeBtn:hover {
+    scale: 105%;
+}
+
+.sometalkingContainer button:active,
+.emailMeBtn:active {
+    scale: 95%;
+}
+
+.contactMeBtn {
+    background: transparent;
+        color: var(--text-main);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.viewProjectBtn {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+button:hover {
+    transform: translateY(-2px);
+} 
+
+.startingLineUp {
+    font-variant-caps: all-petite-caps;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    font-family: sans-serif;
+}
+
+.box-body {
+    font-style: italic;
+    color: var(--text-sub);
+}
+
+.child-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.box_inside_box {
+    padding: 0.8rem;
+    background: var(--surface-light);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.box_inside_box:nth-child(1) {
+    border-left: 3px solid var(--primary);
+}
+
+.box_inside_box:nth-child(2) {
+    border-left: 3px solid var(--accent);
+}
+
+.box_inside_box:nth-child(3) {
+    border-left: 3px solid #f59e0b;
+}
+
+.box_inside_box:nth-child(4) {
+    border-left: 3px solid #a855f7;
+}
+
+.box_inside_box h1 {
+    font-size: 1.8rem;
+}
+
+.box_inside_box p {
+    color: var(--text-sub);
+}
+
+/* TODO: I DON'T KNOW GRID SYNTAX */
+.boxes_again,
+.box-in-experience {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.boxes_again_inside_boxes,
+.boxes-child-in-experience {
+    width: fit-content;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.boxes_again_inside_boxes:nth-child(1) {
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+}
+
+.boxes_again_inside_boxes h1,
+.boxes-child-in-experience h3 {
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.boxes_again_inside_boxes p,
+.boxes-child-in-experience p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-sub);
+}
+
+.experience,
+.getInTouch {
+    letter-spacing: 0.2rem;
+    font-variant-caps: all-petite-caps;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.experienceBigOne,
+.readyToBuildOne {
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+}
+
+.year {
+    background-color: rgb(218, 238, 255);
+    width: fit-content;
+    padding: 0.8rem;
+    border-radius: 1rem;
+}
+
+.emailMeBtn {
+    background-color: rgb(0, 72, 255);
+    color: white; 
+}
+

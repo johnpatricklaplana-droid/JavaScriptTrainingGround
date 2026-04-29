@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+<body>
+    <div class="overlay">
+
+    </div>
+    <div class="projectSaveSuccessPopupMessage">
+        <p>Project save</p>
+    </div>
+    <div class="overlayForFloatingImages">
+        <div class="nextPrevButtonParent">
+            <div class="nextPrevButton">
+                <button class="prevButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="11 17 6 12 11 7"></polyline>
+                        <polyline points="18 17 13 12 18 7"></polyline>
+                    </svg>
+                </button>
+                <button class="nextButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="13 17 18 12 13 7"></polyline>
+                        <polyline points="6 17 11 12 6 7"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="floatingImagesContainer">
+                <div class="floatingImagesSlider">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popUp">
+        <h1 class="add-new-product">Add new project</h1>
+
+        <div class="grid">
+            <div>
+                <div class="inputCont">
+                    <label class="par" for="">Title</label>
+                    <input id="title" type="text">
+                </div>
+                <div class="inputCont">
+                    <label class="par" for="">Date</label>
+                    <input id="date" type="date">
+                </div>
+            </div>
+            <div style="min-width: 0;">
+                <label class="drop-and-drag" for="fileInput">
+                    <img class="imagePreviewBigOne" alt="">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Cloud -->
+                        <path d="M20 16.5a4.5 4.5 0 0 0-1.2-8.85A6 6 0 0 0 6 9.5 3.5 3.5 0 0 0 6.5 16.5H20z" />
+            
+                        <!-- Arrow Down -->
+                        <path d="M12 10v6" />
+                        <path d="M9.5 13.5L12 16l2.5-2.5" />
+                    </svg>
+                    <p style="text-align: center;">drag and drop like a pro</p>
+                </label>
+            </div>
+            <div class="imagesContainer">
+                <p class="images-placeholder">Your images will appear here.</p>
+            </div>
+            <div class="inputCont description">
+                <label class="par" for="">Description</label>
+                <textarea name="" id="description"></textarea>
+            </div>
+        </div>
+        <div class="addProductButtonsContainer">
+            <button id="dont-save-button" class="dont-save-button">Cancel</button>
+            <button id="saveProject" class="saveButton">Save</button>
+        </div>
+        <input id="fileInput" multiple style="display: none;" type="file">
+    </div>
+    <div class="mainContainer">
+        <nav class="nav-bar">
+            <div class="naming">
+                <div class="profilePicture">
+        
+                </div>
+                <div>
+                    <p class="portfolio">Portfolio</p>
+                    <p class="yourName">Johny hey daddy</p>
+                </div>
+            </div>
+            <ul class="navLinks">
+                <li><a href="index.html">About</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a style="color: blue;" href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <main class="mainPower">
+            <p class="projects">Projects</p>
+            <h1 class="mainCharacter">Real-world developer work, built for performance and scale.</h1>
+            <p class="par secondMainCharacter" style="max-width: 900px;">A curated set of production-ready portfolio projects that show how I solve
+                backend complexity, align system design with
+                business impact, and deliver polished front-end experiences.</p>
+            
+            <div class="buttonContainer">
+                <button id="addProject" class="addProject">+ add new project</button>
+                <button class="manageProject">manage projects</button>
+            </div>
+        </main>
+        <div class="projectsContainer">
+            
+        </div>
+    </div>
+
+    <script type="module" src="project.js"></script>
+</body>
+</html>
