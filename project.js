@@ -163,7 +163,7 @@ async function addProject (images) {
     projects.forEach((project, index) => {
         
         const projectBox = `
-            <div class="project-box" data-project-id=${project.project_id}>
+            <div class="project-box" data-projectbox-id=${project.project_id}>
                 <div class="project-actions">
                     <button class="edit-btn">Edit</button>
                     <button class="delete-btn">Delete</button>
@@ -191,7 +191,7 @@ async function addProject (images) {
 
         if (event.target.closest(".project-box")) {
             document.querySelector(".floatingImagesSlider").innerHTML = "";
-            const project_id = event.target.closest(".project-box").dataset.projectId;
+            const project_id = event.target.closest(".project-box").dataset.projectboxId;
 
             const imgs = images.find(img => Number(img.id) === Number(project_id));
           
@@ -268,17 +268,33 @@ function showFloatingImages (imagesLength) {
 }) ();
 
 // TODO: 
-function updateProject () {
+async function updateProject (projectId) {
+
+    const titleEl = document.getElementById("editTitle");
+    const dateEl = document.getElementById("editDate");
+    const descriptionEl = document.getElementById("editDescription");
+
+    const title = titleEl.value.trim();
+    const date = dateEl.value.trim();
+    const description = descriptionEl.value.trim();
 
     const url = `http://localhost:80/index.php/edit-project`;
     const body = {
-        project_id: "",
-        date: "",
-        title: "",
-        description: ""
+        project_id: projectId,
+        date: date,
+        title: title,
+        description: description
     };
 
-    UPDATE(url, body);
+    const result = await UPDATE(url, body);
+   
+    if(result.status === 204) {
+        const projectBox = document.querySelector(`[data-projectbox-id="${projectId}"]`);
+       
+        projectBox.querySelector(".projectName").innerText = title;
+        projectBox.querySelector("p").innerText = description;
+        projectBox.querySelector(".projectDate").innerText = date;
+    }
 
 }
 
@@ -288,7 +304,7 @@ function updateProject () {
         if (event.target.closest(".edit-btn")) {
             event.stopPropagation();
 
-            const projectId = event.target.closest(".project-box").dataset.projectId;
+            const projectId = event.target.closest(".project-box").dataset.projectboxId;
 
             const url = `http://localhost/index.php/get-project?id=${projectId}`;
 
@@ -309,12 +325,22 @@ function updateProject () {
         }
     });
 
-    document.getElementById("closeEdit").onclick = () => {
-        document.querySelector(".editPanel").classList.remove("show");
-    };
+    document.addEventListener("click", (event) => {
 
-    document.getElementById("cancelEdit").onclick = () => {
+        if (event.target.closest(".editPanel")) {
+            return;
+        }
+
         document.querySelector(".editPanel").classList.remove("show");
-    };
+
+    });
+
+    document.getElementById("saveEdit").addEventListener("click", (event) => {
+
+        const projectId = event.target.dataset.projectId;
+
+        updateProject(projectId);
+        
+    });
 
 }) ();

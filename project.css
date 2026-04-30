@@ -26,9 +26,9 @@
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    background: radial-gradient(circle at top left,
-                rgba(99, 102, 241, 0.15),
-                transparent 40%);
+        background: radial-gradient(circle at top left,
+                    rgba(99, 102, 241, 0.15),
+                    transparent 40%);
 }
 
 body {
@@ -71,6 +71,8 @@ h1 {
 .mainCharacter {
     animation: holdUp 0.8s ease forwards;
     opacity: 0;
+    margin-top: 32px;
+    font-size: 40px;
 }
 
 .secondMainCharacter {
@@ -88,7 +90,8 @@ h1 {
 }
 
 .buttonContainer button {
-    padding: 0.8rem;
+    margin-top: 32px;
+    padding: 16px;
     border: none;
     transition: all 0.2s ease-in-out;
     border-radius: 0.8rem;
@@ -107,6 +110,7 @@ h1 {
 .addProject {
     background: var(--primary);
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    color: white;
 }
 
 .nav-bar {
@@ -560,4 +564,12 @@ h1 {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.editFooter button {
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    padding: 16px;
+    border-radius: 10px;
 }
