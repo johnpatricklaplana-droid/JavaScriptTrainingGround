@@ -26,3 +26,16 @@ export async function GET(url) {
         console.error("ERROR HAPPENS: " + error);
     }
 }
+
+export async function UPDATE(url, body) {
+    try {
+        const result = await fetch(url, {
+            method: "PUT",
+            body: JSON.stringify(body)
+        })
+
+        return result;
+    } catch (error) {
+        console.error("ERROR HAPPENS: " + error);
+    }
+}

@@ -1,4 +1,4 @@
-import { GET, POST } from "./api/crud.js";
+import { GET, POST, UPDATE } from "./api/crud.js";
 
 (() => {
 
@@ -184,6 +184,11 @@ async function addProject (images) {
     });
 
     projectsContainer.addEventListener("click", (event) => {
+
+        if(event.target.closest(".edit-btn")) {
+            return;
+        }
+
         if (event.target.closest(".project-box")) {
             document.querySelector(".floatingImagesSlider").innerHTML = "";
             const project_id = event.target.closest(".project-box").dataset.projectId;
@@ -259,5 +264,57 @@ function showFloatingImages (imagesLength) {
     overlayForFloatingImages.addEventListener("click", () => {
         overlayForFloatingImages.classList.remove("show");
     });
+
+}) ();
+
+// TODO: 
+function updateProject () {
+
+    const url = `http://localhost:80/index.php/edit-project`;
+    const body = {
+        project_id: "",
+        date: "",
+        title: "",
+        description: ""
+    };
+
+    UPDATE(url, body);
+
+}
+
+(() => {
+
+    document.querySelector(".projectsContainer").addEventListener("click", async (event) => {
+        if (event.target.closest(".edit-btn")) {
+            event.stopPropagation();
+
+            const projectId = event.target.closest(".project-box").dataset.projectId;
+
+            const url = `http://localhost/index.php/get-project?id=${projectId}`;
+
+            const result = await GET(url);
+
+            const title = result.data.title;
+            const date = result.data.date;
+            const description = result.data.description;
+
+            document.getElementById("editTitle").value = title;
+            document.getElementById("editDate").value = date;
+            document.getElementById("editDescription").value = description;
+
+            document.querySelector(".editPanel").classList.add("show");
+
+            // store ID
+            document.getElementById("saveEdit").dataset.projectId = result.data.id;
+        }
+    });
+
+    document.getElementById("closeEdit").onclick = () => {
+        document.querySelector(".editPanel").classList.remove("show");
+    };
+
+    document.getElementById("cancelEdit").onclick = () => {
+        document.querySelector(".editPanel").classList.remove("show");
+    };
 
 }) ();
