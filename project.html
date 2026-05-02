@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="frontend/src/styles/project.css">
 </head>
 <body>
     <div class="overlay">
@@ -114,8 +114,8 @@
             </div>
             <ul class="navLinks">
                 <li><a href="index.html">About</a></li>
-                <li><a href="#">Skills</a></li>
-                <li><a style="color: blue;" href="#">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a>Projects</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
@@ -128,14 +128,41 @@
             
             <div class="buttonContainer">
                 <button id="addProject" class="addProject">+ add new project</button>
-                <button class="manageProject">manage projects</button>
+                <button class="login">Login</button>
             </div>
         </main>
         <div class="projectsContainer">
             
         </div>
     </div>
+    <div class="authModal">
+        <div class="authBox">
+            <h2>Access Denied</h2>
+            <p class="par">You are not logged in. This action is forbidden.</p>
+    
+            <input type="password" id="adminPassword" placeholder="Password">
+            <p class="authError">Wrong password</p>
+            <div class="authActions">
+                <button id="cancelAuth">Cancel</button>
+                <button id="confirmAuth">Confirm</button>
+            </div>
+        </div>
+    </div>
 
-    <script type="module" src="project.js"></script>
+    <div class="deleteModal" id="deleteModal">
+        <div class="deleteBox">
+            <h2>Delete Project</h2>
+            <p class="par">This action cannot be undone. Are you sure you want to delete this project?</p>
+    
+            <div class="deleteActions">
+                <button id="cancelDelete">Cancel</button>
+                <button id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="frontend/src/pages/project.js"></script>
 </body>
 </html>

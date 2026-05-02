@@ -39,3 +39,17 @@ export async function UPDATE(url, body) {
         console.error("ERROR HAPPENS: " + error);
     }
 }
+
+export async function DELETE(url, body) {
+    try {
+        const result = await fetch(url, {
+            method: "DELETE",
+            body: JSON.stringify(body)
+        })
+        
+        const response = await result.json();
+        return response;
+    } catch (error) {
+        console.error("ERROR HAPPENS: " + error);
+    }
+}

@@ -1,4 +1,4 @@
-import { GET, POST, UPDATE } from "./api/crud.js";
+import { DELETE, GET, POST, UPDATE } from "../api/crud.js";
 
 (() => {
 
@@ -17,7 +17,7 @@ import { GET, POST, UPDATE } from "./api/crud.js";
         document.querySelector(".overlay").classList.remove("show");
     })
 
-    // close pop using overlay
+   
     document.querySelector(".overlay").addEventListener("click", (event) => {
         event.stopPropagation();
         popUp.classList.remove("show");
@@ -112,7 +112,7 @@ async function addProject (images) {
         date: dateEl.value.trim()
     };
 
-    const url = "http://localhost:80/index.php/save-project"
+    const url = "http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/save-project"
 
     const body = new FormData();
 
@@ -138,30 +138,44 @@ async function addProject (images) {
         setTimeout(() => {
             document.querySelector(".projectSaveSuccessPopupMessage").classList.remove("show");
         }, 3000);
-    } else {
-        //TODO
+
+        fetctProjects();
+
+    } else if(result.status === 401) {
+        document.querySelector(".authModal").classList.add("show");
     }
 
 }
 
 
-(async () => {
+(() => {
 
-    const url = "http://localhost:80/index.php/get-projects"
+    fetctProjects();
+
+}) ();
+
+const alreadyExistProjectId = [];
+
+async function fetctProjects() {
+    const url = "http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/get-projects"
 
     const result = await GET(url);
     const projects = result.data;
 
     const projectsContainer = document.querySelector(".projectsContainer");
 
-    const images = projects.map(img => 
-        ({id: img.project_id, images: img.images})
+    const images = projects.map(img =>
+        ({ id: img.project_id, images: img.images })
     );
 
     console.log(images);
 
     projects.forEach((project, index) => {
-        
+
+        if(alreadyExistProjectId.includes(project.project_id)) {
+            return;
+        }
+
         const projectBox = `
             <div class="project-box" data-projectbox-id=${project.project_id}>
                 <div class="project-actions">
@@ -175,6 +189,8 @@ async function addProject (images) {
             </div>
         `;
 
+        alreadyExistProjectId.push(project.project_id);
+
         projectsContainer.insertAdjacentHTML("beforeend", projectBox);
 
         const box = projectsContainer.lastElementChild;
@@ -185,7 +201,11 @@ async function addProject (images) {
 
     projectsContainer.addEventListener("click", (event) => {
 
-        if(event.target.closest(".edit-btn")) {
+        if (event.target.closest(".edit-btn")) {
+            return;
+        }
+
+        if (event.target.closest(".delete-btn")) {
             return;
         }
 
@@ -194,7 +214,7 @@ async function addProject (images) {
             const project_id = event.target.closest(".project-box").dataset.projectboxId;
 
             const imgs = images.find(img => Number(img.id) === Number(project_id));
-          
+
             imgs.images.forEach(img => {
                 const floatingImages = `
                     <img src="http://localhost:80/${img}">
@@ -204,12 +224,11 @@ async function addProject (images) {
             });
 
             document.querySelector(".overlayForFloatingImages").classList.add("show");
-      
+
             showFloatingImages(imgs.images.length);
         }
     });
-
-}) ();
+}
 
 // images slider power 
 function showFloatingImages (imagesLength) {
@@ -278,7 +297,7 @@ async function updateProject (projectId) {
     const date = dateEl.value.trim();
     const description = descriptionEl.value.trim();
 
-    const url = `http://localhost:80/index.php/edit-project`;
+    const url = `http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/edit-project`;
     const body = {
         project_id: projectId,
         date: date,
@@ -294,6 +313,14 @@ async function updateProject (projectId) {
         projectBox.querySelector(".projectName").innerText = title;
         projectBox.querySelector("p").innerText = description;
         projectBox.querySelector(".projectDate").innerText = date;
+    } else if(result.status === 401) {
+        const message = document.getElementById("toast");
+        message.innerText = "You do not have permission to edit this.";
+        message.classList.add("show");
+
+        setTimeout(() => {
+            message.classList.remove("show");
+        }, 3000);
     }
 
 }
@@ -306,7 +333,7 @@ async function updateProject (projectId) {
 
             const projectId = event.target.closest(".project-box").dataset.projectboxId;
 
-            const url = `http://localhost/index.php/get-project?id=${projectId}`;
+            const url = `http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/get-project?id=${projectId}`;
 
             const result = await GET(url);
 
@@ -341,6 +368,115 @@ async function updateProject (projectId) {
 
         updateProject(projectId);
         
+    });
+
+}) ();
+
+// authentication
+(() => {
+     
+    const authModal = document.querySelector(".authModal");
+    const confirmBtn = document.getElementById("confirmAuth");
+    const cancelBtn = document.getElementById("cancelAuth");
+    const errorText = document.querySelector(".authError");
+
+    cancelBtn.addEventListener("click", () => {
+        authModal.classList.remove("show");
+    });
+
+    confirmBtn.addEventListener("click", () => login());
+
+}) ();
+
+// show login modal
+(() => {
+    
+    const login = document.querySelector(".login");
+    const authModal = document.querySelector(".authModal");
+
+    login.addEventListener("click", () => {
+        authModal.classList.add("show");
+    });
+
+}) ();
+
+async function login() {
+    const password = document.getElementById("adminPassword").value;
+    const authModal = document.querySelector(".authModal");
+
+    const url = "http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/auth";
+    const body = {
+        password: password
+    }
+
+    const result = await POST(url, JSON.stringify(body));
+
+    if (result.authenticated) {
+        authModal.classList.remove("show");
+        document.querySelector(".popUp").classList.add("show");
+        document.querySelector(".overlay").classList.add("show");
+    } else {
+        errorText.classList.add("show");
+    }
+}
+
+(() => {
+    
+    const deleteModal = document.getElementById("deleteModal");
+    const cancelDelete = document.getElementById("cancelDelete");
+    const confirmDelete = document.getElementById("confirmDelete");
+
+    let targetProjectId = null;
+
+    let projectBox;
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            projectBox = e.target.closest(".project-box");
+            targetProjectId = projectBox.dataset.projectboxId; 
+            
+            deleteModal.classList.add("show");
+        }
+    });
+
+    cancelDelete.addEventListener("click", () => {
+        deleteModal.classList.remove("show");
+        targetProjectId = null;
+    });
+
+    confirmDelete.addEventListener("click", async () => {
+        if (!targetProjectId) return;
+
+        const url = "http://localhost:80/JavaScriptTrainingGround/backend/src/index.php/delete-project";
+        const body = {
+            project_id: targetProjectId
+        }
+
+        const result = await DELETE(url, body);
+
+        const message = document.getElementById("toast");
+
+        if(result.status === 200) {
+            message.innerText = result.message;
+            message.classList.add("show");
+
+            setTimeout(() => {
+                message.classList.remove("show");
+            }, 3000);
+
+            projectBox.remove();
+        } else if(result.status === 401) {
+            message.innerText = "You do not have permission to delete this.";
+            message.classList.add("show");
+
+            setTimeout(() => {
+                message.classList.remove("show");
+            }, 3000);
+        }
+
+        deleteModal.classList.remove("show");
+        targetProjectId = null;
+
     });
 
 }) ();
