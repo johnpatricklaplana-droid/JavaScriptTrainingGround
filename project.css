@@ -24,7 +24,8 @@
 .mainContainer {
     padding: 3rem;
     display: flex;
-    gap: 3rem;
+    margin: auto;
+    gap: 48px;
     flex-direction: column;
         background: radial-gradient(circle at top left,
                     rgba(99, 102, 241, 0.15),
@@ -572,4 +573,76 @@ h1 {
     color: white;
     padding: 16px;
     border-radius: 10px;
+}
+
+.authModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+    z-index: 3000;
+}
+
+.authModal.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.authBox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 320px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.authBox input {
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface-light);
+    color: white;
+}
+
+.authActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.authActions button {
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+#confirmAuth {
+    background: var(--primary);
+    color: white;
+}
+
+.authError {
+    color: #ef4444;
+    font-size: 0.85rem;
+    display: none;
+    text-align: center;
+    line-height: 0;
+}
+
+.authError.show {
+    display: block;
 }

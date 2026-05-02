@@ -8,10 +8,9 @@
     padding: 3rem;
     display: flex;
     flex-direction: column;
-
     max-width: 1200px;
     margin: auto;
-    gap: 4rem;
+    gap: 48px;
 }
 
 :root {
@@ -167,7 +166,7 @@ h3 {
 .starting-point {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 32px;
 }
 
 .starting-point h1 {

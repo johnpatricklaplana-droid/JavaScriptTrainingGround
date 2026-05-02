@@ -17,7 +17,7 @@ import { GET, POST, UPDATE } from "./api/crud.js";
         document.querySelector(".overlay").classList.remove("show");
     })
 
-    // close pop using overlay
+   
     document.querySelector(".overlay").addEventListener("click", (event) => {
         event.stopPropagation();
         popUp.classList.remove("show");
@@ -138,8 +138,8 @@ async function addProject (images) {
         setTimeout(() => {
             document.querySelector(".projectSaveSuccessPopupMessage").classList.remove("show");
         }, 3000);
-    } else {
-        //TODO
+    } else if(result.status === 401) {
+        document.querySelector(".authModal").classList.add("show");
     }
 
 }
@@ -341,6 +341,40 @@ async function updateProject (projectId) {
 
         updateProject(projectId);
         
+    });
+
+}) ();
+
+// authentication
+(() => {
+     
+    const authModal = document.querySelector(".authModal");
+    const confirmBtn = document.getElementById("confirmAuth");
+    const cancelBtn = document.getElementById("cancelAuth");
+    const errorText = document.querySelector(".authError");
+
+    cancelBtn.addEventListener("click", () => {
+        authModal.classList.remove("show");
+    });
+
+    confirmBtn.addEventListener("click", async () => {
+        const password = document.getElementById("adminPassword").value;
+
+        const url = "http://localhost:80/index.php/auth";
+        const body = {
+            password: password
+        }
+
+        const result = await POST(url, JSON.stringify(body));
+
+        if (result.authenticated) {
+            authModal.classList.remove("show");
+            document.querySelector(".popUp").classList.add("show");
+            document.querySelector(".overlay").classList.add("show");
+        } else {    
+            errorText.classList.add("show");
+            window.isAuthenticated = result.authenticated;
+        }
     });
 
 }) ();
