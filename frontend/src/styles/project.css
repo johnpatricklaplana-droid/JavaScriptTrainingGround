@@ -645,7 +645,6 @@ h1 {
 
 .authError.show {
     display: block;
-<<<<<<< HEAD:frontend/src/styles/project.css
 }
 
 .deleteModal {
@@ -759,9 +758,6 @@ h1 {
     border-left: 4px solid var(--accent);
 }
 
-/* error */
 .toast.error {
     border-left: 4px solid var(--danger);
-=======
->>>>>>> 8e6bbdc04c867fcc9a46a161505a72b997a608c9:project.css
 }
