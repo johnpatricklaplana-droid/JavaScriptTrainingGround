@@ -138,9 +138,12 @@ async function addProject (images) {
         setTimeout(() => {
             document.querySelector(".projectSaveSuccessPopupMessage").classList.remove("show");
         }, 3000);
+<<<<<<< HEAD:frontend/src/pages/project.js
 
         fetctProjects();
 
+=======
+>>>>>>> 8e6bbdc04c867fcc9a46a161505a72b997a608c9:project.js
     } else if(result.status === 401) {
         document.querySelector(".authModal").classList.add("show");
     }
@@ -384,6 +387,7 @@ async function updateProject (projectId) {
         authModal.classList.remove("show");
     });
 
+<<<<<<< HEAD:frontend/src/pages/project.js
     confirmBtn.addEventListener("click", () => login());
 
 }) ();
@@ -480,3 +484,26 @@ async function login() {
     });
 
 }) ();
+=======
+    confirmBtn.addEventListener("click", async () => {
+        const password = document.getElementById("adminPassword").value;
+
+        const url = "http://localhost:80/index.php/auth";
+        const body = {
+            password: password
+        }
+
+        const result = await POST(url, JSON.stringify(body));
+
+        if (result.authenticated) {
+            authModal.classList.remove("show");
+            document.querySelector(".popUp").classList.add("show");
+            document.querySelector(".overlay").classList.add("show");
+        } else {    
+            errorText.classList.add("show");
+            window.isAuthenticated = result.authenticated;
+        }
+    });
+
+}) ();
+>>>>>>> 8e6bbdc04c867fcc9a46a161505a72b997a608c9:project.js

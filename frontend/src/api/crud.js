@@ -2,7 +2,8 @@ export async function POST (url, body) {
     try {
         const result = await fetch(url, {
             method: "POST",
-            body: body
+            body: body,
+            credentials: "include"
         })
 
         const response = await result.json();
@@ -31,7 +32,8 @@ export async function UPDATE(url, body) {
     try {
         const result = await fetch(url, {
             method: "PUT",
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: "include"
         })
 
         return result;
