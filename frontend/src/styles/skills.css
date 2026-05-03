@@ -47,10 +47,10 @@ h2 {
 button {
     transition: all 0.2s ease;
 }
-
+/* 
 button:hover {
     transform: translateY(-2px);
-}
+} */
 
 .par {
     color: var(--muted);
@@ -166,7 +166,7 @@ h3 {
 .starting-point {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 18px;
 }
 
 .starting-point h1 {
@@ -187,49 +187,11 @@ h3 {
     max-width: 800px;
 }
 
-.mainEventContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-}
-
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.8rem;
-}
-
-.someTalkingInMainEvent {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.someTalkingInMainEvent h2 {
-    opacity: 0;
-    animation: holdUp 0.8s ease forwards;
-    animation-delay: 0.3s;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    color: var(--text);
-}
-
-.someTalkingInMainEvent label {
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.someTalkingInMainEvent h1 {
-    word-spacing: 0.5rem;
-    opacity: 0;
-    animation: holdUp 0.8s ease forwards;
-    animation-delay: 0.4s;
-}
-
-.someTalkingInMainEvent p {
-    opacity: 0;
-    animation: holdUp 0.8s ease forwards;
-    animation-delay: 0.5s;
+    margin-bottom: 48px;
 }
 
 .skill-card {
@@ -258,14 +220,22 @@ h3 {
     animation-delay: 0.7s;
 }
 
+.skill-card:nth-child(3) {
+    opacity: 0;
+    animation: holdUp 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.skill-card:nth-child(4) {
+    opacity: 0;
+    animation: holdUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
 .skill-card:hover {
     transform: translateY(-6px);
     border-color: rgba(99, 102, 241, 0.4);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-}
-
-.skill-card:active {
-    scale: 95%;
 }
 
 .skill-card img {
@@ -273,9 +243,46 @@ h3 {
 }
 
 .boxes {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
+}
+
+/* Small devices (large phones) */
+@media (max-width: 640px) {
+    .boxes {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .skills-grid {
+        display: flex;
+        overflow: auto;
+        padding: 8px;
+    }
+    .skill-card {
+        flex-shrink: 0;
+        width: 100%;
+    }
+    .mainContainer {
+        padding: 16px;
+    }
+    .navLinks {
+        display: none;
+    }
+    .navMobileVersion {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+    
+}
+
+/* Small laptops */
+@media (min-width: 1024px) {
+
 }
 
 .backend {
@@ -319,21 +326,84 @@ h3 {
     scale: 105%;
 }
 
-.emailMeInSkills:active {
-    scale: 95%;
-}
-
 footer {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    background-color: white;
+    background: var(--surface-2);
     padding-left: 3rem;
     padding-right: 3rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-footer h1 {
-    font-size: 1.5rem;
+footer p {
+    font-size: 16px;
+    text-align: center;
+}
+
+.navMobileVersion {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 48px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipeButtonToOpenNav {
+    background-color: white;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    transform: translateX(-100%);
+}
+
+.rightOne {
+    display: none;
+}
+
+.leftOne {
+    display: block;
+}
+
+.leftOne.hide {
+    display: none;
+}
+
+.rightOne.show {
+    display: block;
+}
+
+.swipeButtonToOpenNav.hide {
+    transform: translateX(0);
+}
+
+.navMobileVersion.show {
+    transform: translateX(0);
+}
+
+.navMobileVersion ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background-color: white;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.navMobileVersion ul li {
+    list-style: none;
+    color: black;
+}
+
+.navMobileVersion ul li a {
+    text-decoration: none;
+    color: black;
 }
