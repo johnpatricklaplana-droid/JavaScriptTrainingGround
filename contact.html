@@ -65,12 +65,48 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit">Send Message</button>
+                <button class="submitButton" type="submit">Send Message</button>
             </form>
         </section>
     </main>
     <footer>
         <p>&copy; 2026 JavaScript Training Ground. All rights reserved.</p>
     </footer>
+    <div class="navMobileVersion">
+        <button class="swipeButtonToOpenNav">
+            <svg class="leftOne" width="25" height="45" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+    
+                <g stroke="#111827" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    
+                    <!-- left angle -->
+                    <path d="M33 15 L20 32.5 L33 50" />
+    
+                    <!-- right angle -->
+                    <path d="M45 15 L32 32.5 L45 50" />
+    
+                </g>
+    
+            </svg>
+            <svg class="rightOne" width="25" height="45" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+    
+                <g stroke="#111827" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    
+                    <!-- right angle >> -->
+                    <path d="M32 15 L45 32.5 L32 50" />
+                    <path d="M20 15 L33 32.5 L20 50" />
+    
+                </g>
+    
+            </svg>
+        </button>
+        <ul>
+            <li>🙋‍♂️ <a href="index.html">About me</a></li>
+            <li>⚙️ <a href="skills.html">Skills</a></li>
+            <li>📂 <a href="project.html">Projects</a></li>
+            <li>☎️ <a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <script type="module" src="frontend/src/pages/contact.js"></script>
 </body>
 </html>

@@ -574,6 +574,12 @@ h1 {
     border-radius: 10px;
 }
 
+#cancelEdit {
+    color: black;
+    font-weight: 700;
+    background-color: var(--text-main);
+}
+
 .authModal {
     position: fixed;
     inset: 0;
@@ -759,4 +765,95 @@ h1 {
 
 .toast.error {
     border-left: 4px solid var(--danger);
+}
+
+.navMobileVersion {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 48px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipeButtonToOpenNav {
+    background-color: white;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    transform: translateX(-100%);
+}
+
+.rightOne {
+    display: none;
+}
+
+.leftOne {
+    display: block;
+}
+
+.leftOne.hide {
+    display: none;
+}
+
+.rightOne.show {
+    display: block;
+}
+
+.swipeButtonToOpenNav.hide {
+    transform: translateX(0);
+}
+
+.navMobileVersion.show {
+    transform: translateX(0);
+}
+
+.navMobileVersion ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background-color: white;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.navMobileVersion ul li {
+    list-style: none;
+    color: black;
+}
+
+.navMobileVersion ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 640px) {
+    .project-actions {
+        opacity: 1;
+    }
+    .mainContainer {
+        padding: 16px;
+    }
+
+    .navLinks {
+        display: none;
+    }
+    
+    .navMobileVersion {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+    .popUp {
+        left: 50%;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

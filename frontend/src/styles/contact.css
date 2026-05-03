@@ -182,7 +182,7 @@ main {
     resize: vertical;
 }
 
-button {
+.submitButton {
     background-color: var(--primary);
     color: var(--text-main);
     border: none;
@@ -193,7 +193,7 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.submitButton:hover {
     background-color: #4f46e5;
 }
 
@@ -212,22 +212,91 @@ footer p {
     margin: 0;
 }
 
+.navMobileVersion {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 48px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipeButtonToOpenNav {
+    background-color: white;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    transform: translateX(-100%);
+}
+
+.rightOne {
+    display: none;
+}
+
+.leftOne {
+    display: block;
+}
+
+.leftOne.hide {
+    display: none;
+}
+
+.rightOne.show {
+    display: block;
+}
+
+.swipeButtonToOpenNav.hide {
+    transform: translateX(0);
+}
+
+.navMobileVersion.show {
+    transform: translateX(0);
+}
+
+.navMobileVersion ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background-color: white;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.navMobileVersion ul li {
+    list-style: none;
+    color: black;
+}
+
+.navMobileVersion ul li a {
+    text-decoration: none;
+    color: black;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-bar {
-        flex-direction: column;
-        gap: 1rem;
+    .navLinks {
+        display: none;
     }
-    
     main {
-        flex-direction: column;
+        padding: 16px;
     }
-    
+    .nav-bar {
+        padding: 16px;
+    }  
     header h1 {
         font-size: 2rem;
     }
-    
     .contact-info, .contact-form {
         padding: 1.5rem;
+    }
+    .navMobileVersion {
+        opacity: 1 !important;
+        pointer-events: all !important;
     }
 }

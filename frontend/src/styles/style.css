@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     gap: 48px;
-    max-width: 1200px;
+    width: 100vw;
     margin: auto;
     /* background: radial-gradient(circle at top left,
                     rgba(99, 102, 241, 0.15),
@@ -214,17 +214,6 @@ body {
     overflow: hidden;
 }
 
-/* TODO: I forgot the syntax */
-/* .sometalkingContainer button::before {
-    top: 0;
-    left: 0;
-    content: "";
-    width: 200%;
-    height: 200%;
-    position: absolute;
-    background-color: aliceblue;
-} */
-
 .sometalkingContainer button:hover,
 .emailMeBtn:hover {
     scale: 105%;
@@ -246,10 +235,10 @@ body {
     color: white;
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
 }
-
+/* 
 button:hover {
     transform: translateY(-2px);
-} 
+}  */
 
 .startingLineUp {
     font-variant-caps: all-petite-caps;
@@ -302,7 +291,8 @@ button:hover {
 /* TODO: I DON'T KNOW GRID SYNTAX */
 .boxes_again,
 .box-in-experience {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
 }
 
@@ -359,3 +349,108 @@ button:hover {
     color: white; 
 }
 
+.navMobileVersion {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 48px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipeButtonToOpenNav {
+    background-color: white;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    transform: translateX(-100%);
+}
+
+.rightOne {
+    display: none;
+}
+
+.leftOne {
+    display: block;
+}
+
+.leftOne.hide {
+    display: none;
+}
+
+.rightOne.show {
+    display: block;
+}
+
+.swipeButtonToOpenNav.hide {
+    transform: translateX(0);
+}
+
+.navMobileVersion.show {
+    transform: translateX(0);
+}
+
+.navMobileVersion ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background-color: white;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.navMobileVersion ul li {
+    list-style: none;
+    color: black;
+}
+
+.navMobileVersion ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.lastBoxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.8rem;
+}
+
+@media (max-width: 640px) {
+    .mainContainer {
+        padding: 16px;
+    }
+    .navLinks {
+        display: none;
+    }
+    .navMobileVersion {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+    .subMainEvent {
+        flex-direction: column;
+        width: 100%;
+    }
+    .sometalkingContainer {
+        width: 100%;
+    }
+    .box {
+        width: 100%;
+    }
+    .boxes_again {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+    .box-in-experience {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}

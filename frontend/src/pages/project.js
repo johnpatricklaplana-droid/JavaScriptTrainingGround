@@ -361,6 +361,10 @@ async function updateProject (projectId) {
 
     });
 
+    document.getElementById("cancelEdit").addEventListener("click", () => {
+        document.querySelector(".editPanel").classList.remove("show");
+    });
+
     document.getElementById("saveEdit").addEventListener("click", (event) => {
 
         const projectId = event.target.dataset.projectId;
@@ -481,6 +485,8 @@ async function login() {
 }) ();
 
 (() => {
+
+    const confirmBtn = document.getElementById("confirmAuth");
     
     confirmBtn.addEventListener("click", async () => {
         const password = document.getElementById("adminPassword").value;
@@ -504,3 +510,31 @@ async function login() {
 
 }) ();
 
+// navBar mobile version
+(() => {
+
+    let isOpen = false;
+
+    const swipeButtonToOpenNav = document.querySelector(".swipeButtonToOpenNav");
+    const navMobileVersion = document.querySelector(".navMobileVersion");
+    const rightOne = document.querySelector(".rightOne");
+    const leftOne = document.querySelector(".leftOne");
+
+    swipeButtonToOpenNav.addEventListener("click", () => {
+        if (isOpen) {
+            swipeButtonToOpenNav.classList.remove("hide");
+            navMobileVersion.classList.remove("show");
+            rightOne.classList.remove("show");
+            leftOne.classList.remove("hide");
+            swipeButtonToOpenNav.classList.remove("hide");
+            isOpen = false;
+        } else {
+            swipeButtonToOpenNav.classList.add("hide");
+            navMobileVersion.classList.add("show");
+            rightOne.classList.add("show");
+            leftOne.classList.add("hide");
+            isOpen = true;
+        }
+    });
+
+})();
