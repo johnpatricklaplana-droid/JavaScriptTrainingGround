@@ -22,19 +22,20 @@
 }
 
 .mainContainer {
-    padding: 3rem;
+    padding: 48px;
     display: flex;
-    margin: auto;
-    gap: 48px;
+    margin: auto;   
+    width: 100vw;
+    max-width: 1200px;
     flex-direction: column;
-        background: radial-gradient(circle at top left,
+        /* background: radial-gradient(circle at top left,
                     rgba(99, 102, 241, 0.15),
-                    transparent 40%);
+                    transparent 40%); */
 }
 
 body {
     background: var(--bg);
-        color: var(--text-main);
+    color: var(--text-main);
     position: relative;
 }
 
@@ -72,26 +73,28 @@ h1 {
 .mainCharacter {
     animation: holdUp 0.8s ease forwards;
     opacity: 0;
-    margin-top: 32px;
     font-size: 40px;
+    margin-bottom: 16px;
+    max-width: 700px;
 }
 
 .secondMainCharacter {
     animation: holdUp 0.8s ease forwards;
     animation-delay: 0.1s;
     opacity: 0;
+    max-width: 700px !important;
 }
 
 .buttonContainer {
     display: flex;
-    gap: 0.8rem;
+    gap: 8px;
     animation: holdUp 0.8s ease forwards;
     animation-delay: 0.3s;
     opacity: 0;
+    margin-top: 24px;
 }
 
 .buttonContainer button {
-    margin-top: 32px;
     padding: 16px;
     border: none;
     transition: all 0.2s ease-in-out;
@@ -118,6 +121,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 48px;
 }
 
 .portfolio {
@@ -176,17 +180,18 @@ h1 {
     font-size: 1.2rem;
     font-variant-caps: all-petite-caps;
     letter-spacing: 0.2rem;
+    margin-bottom: 24px;
 }
 
 .mainPower {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 .projectsContainer {
     columns: 3 360px;
-    column-gap: 0.8rem;
+    column-gap: 16px;
+    margin-top: 48px;
 }
 
 .projectsContainer img {
@@ -209,7 +214,7 @@ h1 {
 .project-box {
     animation: holdUp 0.8s ease forwards;
     opacity: 0;
-    margin-bottom: 0.8rem;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     flex-direction: column;
