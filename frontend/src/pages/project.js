@@ -413,11 +413,9 @@ async function login() {
     }
 
     const result = await POST(url, JSON.stringify(body));
-
+    
     if (result.authenticated) {
         authModal.classList.remove("show");
-        document.querySelector(".popUp").classList.add("show");
-        document.querySelector(".overlay").classList.add("show");
     } else {
         errorText.classList.add("show");
     }
